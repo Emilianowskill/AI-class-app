@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box_version = "~> 20230425.0.0"
 
-  config.vm.network "forwarded_port", guest: 22, host: 22
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
 
   #config.ssh.insert_key = false
 
