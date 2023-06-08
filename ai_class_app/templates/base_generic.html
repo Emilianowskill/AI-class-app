@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block title %} <title>Saguil AI</title> {% endblock %}
+    <meta charset="UTF-8">
+    <meta meta="viewport" content="width=devide-width, intial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+
+    
+    
+</head>
+
+<body>
+    <header class="site-header inicio" >
+        <div class="contenedor contenido-header">
+            {% block header %}
+            <div class="barra">
+                <a href="{% url 'index' %}">
+                    {% load static %}
+                    <img src="{% static 'icon/logo.png' %}" alt="Logotipo de Saguil">
+                </a>
+                
+                <nav class="navegacion">
+                    <a href="{% url 'index' %}">Inicio</a>
+                    <a href="{% url 'licencias' %}">Licencias</a>
+                </nav>
+            </div>
+
+            <h1>Esta app está creada para utilizar y probar algunos algoritmos de Machine Learning (Aprendizaje Automático)</h1>  
+            {% endblock %} <!--end block header -->
+        </div> <!-- contenedor -->
+    </header>
+
+    
+    {% block content %}{% endblock %} <!-- end block contenido -->
+
+
+    <footer class="site-footer seccion">
+        <div class="contenedor contenedor-footer">
+            {% block footer %}
+            <nav class="navegacion">
+                <a href="{% url 'index' %}">Inicio</a>
+                <a href="{% url 'licencias' %}">Licencias</a>
+            </nav>
+            <p class="copyright">Todos los Derechos Reservados 2023 &copy;</p>
+            {% endblock %} <!-- end block footer -->
+        </div>
+    </footer>
+
+</body>
