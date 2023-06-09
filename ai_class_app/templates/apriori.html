@@ -2,28 +2,18 @@
 
 {% block content %}
 
-    <h1 class="fw-300 centrar-texto">Apriori</h1>
+	<h1 class="fw-300 centrar-texto">Apriori</h1>
 
-    <main class="contenedor seccion contenido-centrado">
-        <p>Mauris dignissim, risus a mollis ullamcorper, nunc ante mattis mi, quis porttitor arcu felis ut felis. Etiam at arcu eget nisi aliquet accumsan. Proin tempor odio dignissim odio venenatis suscipit. In libero turpis, malesuada sit amet enim eu, finibus scelerisque ligula. Cras sollicitudin felis et urna luctus, quis dapibus quam interdum. Curabitur quis lectus ut odio dictum semper. Mauris volutpat sem a tellus aliquam aliquet in sed odio. Etiam ligula sem, bibendum ac hendrerit non, molestie eu felis. Curabitur lacus enim, efficitur luctus consectetur vitae, euismod et erat. Morbi pretium ullamcorper tristique. Pellentesque vehicula sapien in fermentum eleifend. Nulla metus augue, convallis sit amet nulla a, luctus posuere ipsum.</p>
+	<main class="contenedor seccion contenido-centrado">
+    	<p>ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mauris tortor, luctus elementum cursus vel, tincidunt id leo. Quisque pharetra metus lectus, et tristique metus aliquet tincidunt. Nulla nec risus eget ligula consectetur rutrum non ut tortor. Proin quis consequat ex. Nunc ut ornare urna. Nam mattis placerat ipsum, hendrerit pellentesque urna semper sed. Curabitur tristique, tellus non faucibus efficitur, massa nulla finibus nulla, eget ultrices lacus risus id turpis. Nunc est neque, accumsan et dui feugiat, consectetur egestas velit. Duis tincidunt magna dolor, eu sollicitudin nibh vehicula non.</p>
 
-        <p>ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mauris tortor, luctus elementum cursus vel, tincidunt id leo. Quisque pharetra metus lectus, et tristique metus aliquet tincidunt. Nulla nec risus eget ligula consectetur rutrum non ut tortor. Proin quis consequat ex. Nunc ut ornare urna. Nam mattis placerat ipsum, hendrerit pellentesque urna semper sed. Curabitur tristique, tellus non faucibus efficitur, massa nulla finibus nulla, eget ultrices lacus risus id turpis. Nunc est neque, accumsan et dui feugiat, consectetur egestas velit. Duis tincidunt magna dolor, eu sollicitudin nibh vehicula non.</p>
+		
 
-        <form action="" method="post">
-        	{{form}}
-        	<input type="submit">
-        </form>
-        <!-- <form id="subir-archivo" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" accept=".csv">
-			<button type="submit">Subir archivo</button>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" name="archivo" accept=".csv"/>
+			<button type="submit">Enviar</button>
 		</form>
-
-		{% if uploaded_file_url %}
-		<p>Archivo subido en:
-			<a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}
-			</a>
-		</p>
-		{% endif %} -->
 		
     </main>
 {% endblock %}

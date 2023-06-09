@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<h1 class="fw-300 centrar-texto">{{ algoritmo.title }}</h1>
+
+	<main class="contenedor seccion contenido-centrado">
+    	<p>{{ algoritmo.resumen }}</p>
+    	
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="file" name="archivo"/>
+			<button type="submit">Enviar</button>
+		</form>
+		
+    </main>
+{% endblock %}
