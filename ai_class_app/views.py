@@ -2,7 +2,26 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage #Si se crea directamente en FUNCIONA 1
 from .file import ModelFormWithField #Si se crea desde un modelo 2
-#from django.views import generic #Esto para vistas por clase
+from django.views import generic #Esto para vistas por clase
+from .models import Book, Author, BookInstance, Genre, Algoritmo
+from .forms import UploadFileForm
+
+def subir_archivo(request, pk):
+	form = None
+	if request.method == 'POST':
+		form = ModelFormWithField(request.POST, request.FILES)
+		print(form)
+		if form.is_valid():
+			form.save()
+			print('Form valid')
+			return render(request, 'apriori.html')
+		print('Form not valid')
+	else:
+		form = ModelFormWithField()
+
+	context = {'form':form}
+	return render(request,'index.html', context)
+	
 
 
 def licencias(request):
@@ -11,31 +30,30 @@ def licencias(request):
 def index(request):
 	return render(request,'index.html')
 
-#class AlgoritmListView(generic.ListView):
-	# class Meta:
-	# 	model = Algoritmo
-	# 	fields = '__all__'
+class AlgoritmListView(generic.ListView):
 	
-#	model = Algoritmo
-	#context_object_name = 'lista_de_algoritmos'
-	#queryset = Algoritmos.objects.filter(title_icontains='war')[:5] #Filtra los algoritmos que contienen la palabra war
-	#template_name = 'Algoritms/algoritm_detail_view.html'
+	model = Algoritmo
+	context_object_name = 'algoritmo_list'
+	template_name = 'ai_class_app/algoritmo_list.html'
+#	def get_context_data(self, **kwargs):
+#		# Call the base implementation first to get a context
+#		context = super(AlgoritmListView, self).get_context_data(**kwargs)
+#		# Get the blog from id and add it to the context
+#		context['some_data'] = 'This is just some data'
+#		return context
+#	#queryset = Algoritmo.objects.filter(title_icontains='war')[:5] #Filtra los algoritmos que contienen la palabra war
+#	def get_queryset(self):
+#		return Algoritmo.objects.filter(title_icontains='war')[:5] #Filtra los algoritmos que contienen la palabra war
+
 	
-	#return render(request, 'Algoritms/algoritm_detail_view.html')
 
-# class AlgoritmDetailView(generic.DetailView):
-# 	model = Algoritmo
+class AlgoritmDetailView(generic.DetailView):
+	model = Algoritmo
 
-# 	def algoritm_detail_view(request, pk):
-# 		try:
-# 			algoritm_id = Algoritm.objects.get(pk=pk)
-# 		except Algoritm.DoesNotExist:
-# 			raise Http404("No se encontró el algoritmo")
+	
 
-# 		return render(
-# 			request, 
-# 			'algoritms/algoritm_detail_view.html'),
-# 			context = {'algoritm':algoritm_id,}
+	#context = {'form':form}
+	#return render(request,'index.html', context)
 
 
 # FUNCIONA 1
@@ -52,18 +70,27 @@ def index(request):
 
 
 # FUNCIONA 2
-def model_upload(request):
-	form = None
-	if request.method == 'POST':
-		form = ModelFormWithField(request.POST, request.FILES)
-		print(form)
-		if form.is_valid():
-			form.save()
-			print('Form valid')
-			return render(request, 'apriori.html')
-		print('Form not valid')
-	else:
-		form = ModelFormWithField()
+# def model_upload(request):
+# 	form = None
+# 	if request.method == 'POST':
+# 		form = ModelFormWithField(request.POST, request.FILES)
+# 		print(form)
+# 		if form.is_valid():
+# 			form.save()
+# 			print('Form valid')
+# 			return render(request, 'apriori.html')
+# 		print('Form not valid')
+# 	else:
+# 		form = ModelFormWithField()
 
-	context = {'form':form}
-	return render(request,'index.html', context)
+# 	context = {'form':form}
+# 	return render(request,'index.html', context)
+
+class BookListView(generic.ListView):
+	model = Book
+	context_object_name = 'my_book_list'   # your own name for the list as a template variable
+	queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
+	template_name = 'ai_class_app/book_list.html'  # Specify your own template name/location
+
+class BookDetailView(generic.DetailView):
+	model = Book

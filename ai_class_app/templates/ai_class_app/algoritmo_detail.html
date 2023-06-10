@@ -5,12 +5,13 @@
 	<h1 class="fw-300 centrar-texto">{{ algoritmo.title }}</h1>
 
 	<main class="contenedor seccion contenido-centrado">
-    	<p>{{ algoritmo.resumen }}</p>
+    	<p>{{ algoritmo.summary }}</p>
     	
 		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-			<input type="file" name="archivo"/>
-			<button type="submit">Enviar</button>
+			<input type="file" name="archivo" accept=".csv"/>
+			{{ form }}
+        	<input type="submit" value="Submit" />
 		</form>
 		
     </main>

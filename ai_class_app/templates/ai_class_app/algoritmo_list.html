@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<section class="contenedor section">
+    <h2 class="fw-300 centrar-texto">Algoritmos</h2>
+
+    {% if algoritmo_list %}
+    <div class="contenedor-algoritmos">
+        {% for algoritmo in algoritmo_list %}
+        <div class="algoritmo-bloque">
+            {% load static %}
+            <img src="" alt="Icono apriori">
+            <h3>{{ algoritmo.title }}</h3>
+            <p>{{ algoritmo.summary }}</p>
+            <a href="{{ algoritmo.get_absolute_url }}" class="boton boton-uno d-block">Usar algoritmo</a>
+        </div>
+        {% endfor %}
+    </div><!--contenedor-algoritmos-->
+    {% else %}
+    <p> No existen algoritmos registrados</p>
+    {% endif %}
+</section>
+{% endblock %}
